@@ -1,10 +1,15 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://unpkg.com/vue"></script>
     <script src="https://nttcom.github.io/skyway-siru-client/dist/skyway-siru-client.min.js"></script>
   </head>
   <body>
-    <video autoplay></video>
+    <div id="app">
+      <video-view v-if='stream' :score='score' :stream='stream'></video-view>
+      <span v-else>connecting...</span>
+    </div>
     <div>
       <h3>score</h3>
       <span id="score"></span>

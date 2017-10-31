@@ -1,0 +1,6 @@
+video-view {
+  border: 1px solid gray;
+  width: 640px;
+  height: 480px;
+  display: block;
+}
