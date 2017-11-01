@@ -1,6 +1,27 @@
-video-view {
-  border: 1px solid gray;
-  width: 640px;
-  height: 480px;
-  display: block;
+/* style.css */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 1440px;
+  margin: 0 auto;
+}
+
+#monitor-app {
+}
+
+.video-container {
+  border: 1px solid white;
+  width: 718px;
+  height: 538px;
+}
+
+.video-container:nth-child(odd) {
+  float: left;
+}
+.video-container:nth-child(even) {
+  margin-left: 720px;
 }

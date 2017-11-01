@@ -6,18 +6,25 @@
     <script src="https://nttcom.github.io/skyway-siru-client/dist/skyway-siru-client.min.js"></script>
   </head>
   <body>
-    <div id="app">
-      <video-view v-if='stream' :score='score' :stream='stream'></video-view>
-      <span v-else>connecting...</span>
-    </div>
-    <div>
-      <h3>score</h3>
-      <span id="score"></span>
-    </div>
-    <div>
-      <h3>box</h3>
-      <span id="box"></span>
-    </div>
+    <div id="container">
+      <div id="header">
+        <h1>SkyWay IoT SDK - remote camera monitor</h1>
+      </div>
+      <div id="panel">
+        <form>
+          <label>Show boundary box :
+            <input type="checkbox" id="show-boundary">
+          </label>
+        </form>
+      </div>
+      <div id="monitor-app">
+        <div v-for='camera in cameras' class='video-container'>
+          <video-view width="100%" height="100%" class="video-view" v-if='camera.stream' :camera='camera' :show_boundary='show_boundary' :last_updated='lastUpdated'></video-view>
+          <span v-else>connecting...</span>
+        </div>
+      </div>
+  </div>
   </body>
+  <script src="./video-view.js"></script>
   <script src="./app.js"></script>
 </html>
