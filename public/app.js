@@ -18,9 +18,8 @@ client.on('connect', () => {
     client.on('message', (topic, mesg) => {
       videoView.lastUpdated = Date.now()
       const _uuid = mesg.uuid
-
       const _cameras = videoView.cameras.map(camera => {
-        return camera.uuid === _uuid ? Object.assign({}, camera, {score: mesg.score, boundary: mesg.box}) : camera
+        return camera.uuid === _uuid ? Object.assign({}, camera, {score: mesg.score, clusters: mesg.clusters}) : camera
       })
 
       videoView.cameras = _cameras

@@ -25,3 +25,9 @@ body {
 .video-container:nth-child(even) {
   margin-left: 720px;
 }
+
+.gray-back {
+  width: 100%;
+  height: 100%;
+  background: gray;
+}

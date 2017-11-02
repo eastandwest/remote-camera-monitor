@@ -3,7 +3,7 @@ Vue.component('video-view', {
     // このプロパティは todo と呼ばれます。
   props: ['width', 'height', 'camera', 'last_updated', 'show_boundary'],
   template: `
-    <div ref="component">
+    <div ref="component" class="gray-back">
       <span ref="hidden">{{last_updated}}</span>
       <video ref="v" autoplay></video>
       <canvas ref="boundary-canvas"></canvas>
@@ -46,20 +46,24 @@ Vue.component('video-view', {
       this.boundaryCtx.clearRect(0, 0, this.boundaryCanvas.width, this.boundaryCanvas.height)
     },
     updateBoundaryCanvas() {
-      if(!this.camera.boundary) return
-      this.boundaryCanvas.width = this.video.clientWidth
-      this.boundaryCanvas.height = this.video.clientHeight
+      if(this.camera.clusters) {
+        this.boundaryCanvas.width = this.video.clientWidth
+        this.boundaryCanvas.height = this.video.clientHeight
 
-      this.boundaryCtx.strokeStyle = 'yellow'
-      this.boundaryCtx.lineWidth = 2
-      this.boundaryCtx.clearRect(0, 0, this.boundaryCanvas.width, this.boundaryCanvas.height)
+        this.boundaryCtx.strokeStyle = 'yellow'
+        this.boundaryCtx.lineWidth = 2
+        this.boundaryCtx.clearRect(0, 0, this.boundaryCanvas.width, this.boundaryCanvas.height)
 
-      const b = this.camera.boundary
-      const x = b.x * this.video.clientWidth / this.video.videoWidth
-      const y = b.y * this.video.clientHeight / this.video.videoHeight
-      const w = b.width * this.video.clientWidth / this.video.videoWidth
-      const h = b.height * this.video.clientHeight / this.video.videoHeight
-      this.boundaryCtx.strokeRect(x, y, w, h)
+        if (this.camera.clusters.forEach ) {
+          this.camera.clusters.forEach( b => {
+            const x = b.x * this.video.clientWidth / this.video.videoWidth
+            const y = b.y * this.video.clientHeight / this.video.videoHeight
+            const w = b.width * this.video.clientWidth / this.video.videoWidth
+            const h = b.height * this.video.clientHeight / this.video.videoHeight
+            this.boundaryCtx.strokeRect(x, y, w, h)
+          })
+        }
+      }
     },
     updateScoreCanvas() {
       this.scoreCanvas.width = this.video.clientWidth
@@ -72,7 +76,7 @@ Vue.component('video-view', {
       const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`
 
       this.scoreCtx.font = "bold 14px 'Arial'"
-      this.scoreCtx.fillStyle = 'green'
+      this.scoreCtx.fillStyle = '#009944'
       this.scoreCtx.fillText(`score: ${score}`, 10, 20)
       this.scoreCtx.fillText(`${new Date().toLocaleDateString()} ${time}`, 10, 36)
     }

@@ -20,7 +20,7 @@
       <div id="monitor-app">
         <div v-for='camera in cameras' class='video-container'>
           <video-view width="100%" height="100%" class="video-view" v-if='camera.stream' :camera='camera' :show_boundary='show_boundary' :last_updated='lastUpdated'></video-view>
-          <span v-else>connecting...</span>
+          <div class="gray-back" v-else>connecting ...</div>
         </div>
       </div>
   </div>
