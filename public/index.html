@@ -1,26 +1,32 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css"/>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://nttcom.github.io/skyway-siru-client/dist/skyway-siru-client.min.js"></script>
   </head>
   <body>
-    <div id="container">
-      <div id="header">
-        <h1>SkyWay IoT SDK - remote camera monitor</h1>
-      </div>
-      <div id="panel">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">SkyWay IoT SDK - remote camera app</a>
+    </nav>
+    <div class="container-fluid">
+      <div>
         <form>
-          <label>Show boundary box :
-            <input type="checkbox" id="show-boundary">
-          </label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" id="show-boundary">
+              Show boundary box
+            </label>
+          </div>
         </form>
       </div>
       <div id="monitor-app">
-        <div v-for='camera in cameras' class='video-container'>
-          <video-view width="100%" height="100%" class="video-view" v-if='camera.stream' :camera='camera' :show_boundary='show_boundary' :last_updated='lastUpdated'></video-view>
-          <div class="gray-back" v-else>connecting ...</div>
+        <div class="row no-gutters">
+          <div v-if='cameras.length === 0'>Waiting for camera connection ...</div>
+          <div v-else v-for='(camera, index) in cameras' class='col-xl'>
+            <video-view width="100%" height="100%" v-if='camera.stream' :camera='camera' :show_boundary='show_boundary' :last_updated='lastUpdated'></video-view>
+          </div>
         </div>
       </div>
   </div>

@@ -31,9 +31,11 @@ Vue.component('video-view', {
 
 
       this.component.style.position = 'relative'
-      this.video.style.position = 'absolute'
+      // this.video.style.position = 'absolute'
       this.boundaryCanvas.style.position = 'absolute'
+      this.boundaryCanvas.style.top = '0'
       this.scoreCanvas.style.position = 'absolute'
+      this.scoreCanvas.style.top = '0'
     },
     changeFrame() {
       this.component.style.width = this.width.slice(-1) === "%" ? this.width : this.width + "px"
@@ -76,7 +78,7 @@ Vue.component('video-view', {
       const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`
 
       this.scoreCtx.font = "bold 14px 'Arial'"
-      this.scoreCtx.fillStyle = '#009944'
+      this.scoreCtx.fillStyle = '#00ff00'
       this.scoreCtx.fillText(`score: ${score}`, 10, 20)
       this.scoreCtx.fillText(`${new Date().toLocaleDateString()} ${time}`, 10, 36)
     }
