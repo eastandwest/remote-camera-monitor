@@ -6,8 +6,6 @@ client.on('connect', () => {
       // request remote camera streaming
       client.requestStreaming(uuid)
         .then(stream => {
-          // document.querySelector('video').srcObject = stream
-          videoView.cameras.push({uuid, stream})
           videoView.cameras.push({uuid, stream})
         })
 
