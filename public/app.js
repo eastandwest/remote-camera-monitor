@@ -33,7 +33,7 @@ const videoView = new Vue({
   data: {
     cameras: [],
     lastUpdated: 0,
-    show_boundary: false
+    show_boundary: true
   }
 })
 
